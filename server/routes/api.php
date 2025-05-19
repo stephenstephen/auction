@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Interface\Http\Controllers\AuctionController;
 use App\Interface\Http\Controllers\BidController;
+use App\Interface\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,9 @@ Route::prefix('auctions')->group(function () {
 Route::prefix('bids')->group(function () {
     Route::post('/', [BidController::class, 'store']);
     Route::get('/{auctionId}', [BidController::class, 'index']);
+});
+
+Route::prefix('users')->group(function () {
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{id}', [UserController::class, 'show']);
 });
