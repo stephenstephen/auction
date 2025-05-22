@@ -4,7 +4,7 @@ namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 
 use App\Domains\Auctions\Repositories\AuctionRepositoryInterface;
 use App\Domains\Auctions\Entities\Auction;
-use App\Models\Auction as EloquentAuction;
+use App\Infrastructure\Persistence\Eloquent\Models\Auction as EloquentAuction;
 
 class AuctionRepository implements AuctionRepositoryInterface
 {
@@ -45,8 +45,9 @@ class AuctionRepository implements AuctionRepositoryInterface
             title: $model->title,
             description: $model->description,
             startPrice: $model->start_price,
-            terminateAt: $model->terminate_at,
+            currentPrice: $model->current_price,
             status: $model->status,
+            terminateAt: $model->terminate_at,
             sellerId: $model->seller_id,
         );
     }

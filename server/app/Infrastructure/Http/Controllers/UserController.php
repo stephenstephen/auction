@@ -6,6 +6,7 @@ use App\Application\Users\UseCases\RegisterUser;
 use App\Application\Users\UseCases\GetUserById;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {

@@ -5,7 +5,7 @@ namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 use App\Domains\Bid\Entities\Bid;
 use App\Domains\Bid\Repositories\BidRepositoryInterface;
 use Illuminate\Support\Collection;
-use App\Models\Bid as EloquentBid;
+use App\Infrastructure\Persistence\Eloquent\Models\Bid as EloquentBid;
 
 class BidRepository implements BidRepositoryInterface
 {

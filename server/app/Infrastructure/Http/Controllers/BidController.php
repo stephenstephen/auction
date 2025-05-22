@@ -6,6 +6,7 @@ use App\Application\Bids\UseCases\StoreBid;
 use App\Application\Bids\UseCases\GetAuctionBids;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
 
 class BidController extends Controller
 {

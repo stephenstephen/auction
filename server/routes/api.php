@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Interface\Http\Routes;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Interface\Http\Controllers\AuctionController;
-use App\Interface\Http\Controllers\BidController;
-use App\Interface\Http\Controllers\UserController;
+use App\Infrastructure\Http\Controllers\AuctionController;
+use App\Infrastructure\Http\Controllers\BidController;
+use App\Infrastructure\Http\Controllers\UserController;
+use App\Infrastructure\Http\Controllers\AuthController;
 
-/*
+/*completions
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -19,10 +17,6 @@ use App\Interface\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('auctions')->group(function () {
     Route::post('/', [AuctionController::class, 'store']);
     Route::put('/{id}', [AuctionController::class, 'update']);
@@ -32,6 +26,7 @@ Route::prefix('auctions')->group(function () {
     Route::put('/{id}/close', [AuctionController::class, 'close']);
 });
 
+
 Route::prefix('bids')->group(function () {
     Route::post('/', [BidController::class, 'store']);
     Route::get('/{auctionId}', [BidController::class, 'index']);
@@ -40,4 +35,13 @@ Route::prefix('bids')->group(function () {
 Route::prefix('users')->group(function () {
     Route::post('/', [UserController::class, 'store']);
     Route::get('/{id}', [UserController::class, 'show']);
+});
+
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
 });
