@@ -3,7 +3,6 @@
 namespace App\Domains\Auctions\Entities;
 
 use Carbon\CarbonImmutable;
-use App\Domain\Auctions\Entities\AuctionAttributes;
 
 class Auction
 {
@@ -17,12 +16,4 @@ class Auction
         public CarbonImmutable $terminateAt,
         public string $sellerId,
     ) {}
-
-    public function update(AuctionAttributes $data): void
-    {
-        $this->title = $data->title;
-        $this->description = $data->description;
-        $this->startPrice = $data->startPrice;
-        $this->terminateAt = CarbonImmutable::parse($data->terminateAt);
-    }
 }

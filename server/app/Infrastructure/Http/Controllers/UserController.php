@@ -4,6 +4,7 @@ namespace App\Infrastructure\Http\Controllers;
 
 use App\Application\Users\UseCases\RegisterUser;
 use App\Application\Users\UseCases\GetUserById;
+use App\Application\Users\DTOs\UserDataDTO;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
@@ -18,7 +19,13 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = $registerUser->execute($validated);
+        $userData = new UserDataDTO(
+            name: $validated['name'],
+            email: $validated['email'],
+            password: $validated['password']
+        );
+
+        $user = $registerUser->execute($userData);
         return response()->json($user, 201);
     }
 

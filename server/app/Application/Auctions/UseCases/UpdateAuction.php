@@ -4,8 +4,8 @@ namespace App\Application\Auctions\UseCases;
 
 use App\Domains\Auctions\Repositories\AuctionRepositoryInterface;
 use App\Application\Auctions\DTOs\AuctionDataDTO;
-use App\Domain\Auctions\Entities\AuctionAttributes;
 use App\Domains\Auctions\Entities\Auction;
+use Carbon\CarbonImmutable;
 
 class UpdateAuction
 {
@@ -21,7 +21,10 @@ class UpdateAuction
             throw new \Exception('Auction not found');
         }
 
-        $auction->update(AuctionAttributes::fromDTO($data));
+        $auction->title = $data->title;
+        $auction->description = $data->description;
+        $auction->startPrice = $data->startPrice;
+        $auction->terminateAt = new CarbonImmutable($data->terminateAt);
 
         $this->auctionRepository->save($auction);
 
